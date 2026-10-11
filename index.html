@@ -729,17 +729,18 @@
                 </div>
 
                 <!-- Contact Form -->
+                <!-- 
                 <form action="https://formspree.io/f/xdeazynw" method="POST" id="profe-stem-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
                     
                     <div class="grid sm:grid-cols-2 gap-6">
-                        <!-- Nombre -->
+                        <#!-- Nombre --#>
                         <div>
                             <label for="nombre" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tu Nombre completo</label>
                             <input type="text" id="nombre" required placeholder="Ej. Constanza Silva" 
                                 class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
                         </div>
 
-                        <!-- Correo -->
+                        <#!-- Correo --#>
                         <div>
                             <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tu Correo Electrónico</label>
                             <input type="email" id="email" required placeholder="tuemail@ejemplo.com" 
@@ -748,7 +749,7 @@
                     </div>
 
                     <div class="grid sm:grid-cols-2 gap-6">
-                        <!-- Audiencia -->
+                        <#!-- Audiencia --#>
                         <div>
                             <label for="audiencia" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿Cómo te defines?</label>
                             <select id="audiencia" required class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
@@ -761,7 +762,7 @@
                             </select>
                         </div>
 
-                        <!-- Ciudad/Comuna -->
+                        <#!-- Ciudad/Comuna --#>
                         <div>
                             <label for="ciudad" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Ciudad o Comuna</label>
                             <input type="text" id="ciudad" placeholder="Ej. Castro, Valparaíso, Santiago" 
@@ -769,10 +770,67 @@
                         </div>
                     </div>
 
-                    <!-- Mensaje -->
+                    <#!-- Mensaje --#>
                     <div>
                         <label for="mensaje" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿En qué proyecto te gustaría colaborar o qué necesitas?</label>
                         <textarea id="mensaje" rows="4" required placeholder="¡Cuéntanos tus ideas o dudas! Estamos aquí para escucharte y ponernos manos a la obra..." 
+                            class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all"></textarea>
+                    </div>
+
+                    <#!-- Submit Button --#>
+                    <button type="submit" id="submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 font-outfit font-bold text-white text-base shadow-neon-purple hover:scale-[1.01] transition-all duration-300 flex items-center justify-center gap-2">
+                        <span>¡Enviar Mensaje a los Amigos de ProfeSTEM!</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                    </button>
+
+                </form>
+                 -->
+
+<!-- Contact Form -->
+                <form action="https://formspree.io/f/xdeazynw" method="POST" id="profe-stem-form" class="space-y-6">
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Nombre -->
+                        <div>
+                            <label for="nombre" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tu Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Ej. Constanza Silva" 
+                                class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                        </div>
+
+                        <!-- Correo -->
+                        <div>
+                            <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tu Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required placeholder="tuemail@ejemplo.com" 
+                                class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Audiencia -->
+                        <div>
+                            <label for="audiencia" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿Cómo te defines?</label>
+                            <select id="audiencia" name="audiencia" required class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                                <option value="" disabled selected>Selecciona tu rol...</option>
+                                <option value="Estudiante">Estudiante entusiasta</option>
+                                <option value="Profesor/a">Profesor / Educador/a</option>
+                                <option value="Equipo Directivo">Directivo / Sostenedor</option>
+                                <option value="Familia/Apoderado">Familia / Apoderado</option>
+                                <option value="Otro Amigo">Otro amigo de la educación</option>
+                            </select>
+                        </div>
+
+                        <!-- Ciudad/Comuna -->
+                        <div>
+                            <label for="ciudad" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Ciudad o Comuna</label>
+                            <input type="text" id="ciudad" name="ciudad" placeholder="Ej. Castro, Valparaíso, Santiago" 
+                                class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div>
+                        <label for="mensaje" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿En qué proyecto te gustaría colaborar o qué necesitas?</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¡Cuéntanos tus ideas o dudas! Estamos aquí para escucharte y ponernos manos a la obra..." 
                             class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all"></textarea>
                     </div>
 
@@ -783,7 +841,7 @@
                     </button>
 
                 </form>
-
+                 
             </div>
 
         </div>
@@ -916,23 +974,72 @@
         effSlider.addEventListener('input', updateSimulation);
         updateSimulation(); // Init
 
-        // Contact Form Handling (Without alert)
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre').value;
-            const rol = document.getElementById('audiencia').value;
+        
+        
+        // // Contact Form Handling (Without alert)
+        // function handleFormSubmit(e) {
+        //     e.preventDefault();
+        //     const nombre = document.getElementById('nombre').value;
+        //     const rol = document.getElementById('audiencia').value;
 
-            const modalText = document.getElementById('modal-text');
-            modalText.textContent = `¡Hola ${nombre}! Recibimos tu mensaje como ${rol}. Nos hace muy felices conectar contigo. Te responderemos al correo muy pronto.`;
+        //     const modalText = document.getElementById('modal-text');
+        //     modalText.textContent = `¡Hola ${nombre}! Recibimos tu mensaje como ${rol}. Nos hace muy felices conectar contigo. Te responderemos al correo muy pronto.`;
 
-            const modal = document.getElementById('modal-confirm');
-            const modalBox = document.getElementById('modal-box');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modalBox.classList.remove('scale-90');
-            modalBox.classList.add('scale-100');
+        //     const modal = document.getElementById('modal-confirm');
+        //     const modalBox = document.getElementById('modal-box');
+        //     modal.classList.remove('opacity-0', 'pointer-events-none');
+        //     modalBox.classList.remove('scale-90');
+        //     modalBox.classList.add('scale-100');
 
-            document.getElementById('profe-stem-form').reset();
-        }
+        //     document.getElementById('profe-stem-form').reset();
+        // 
+
+// Contact Form Handling (AJAX)
+        const form = document.getElementById('profe-stem-form');
+        
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault(); // Evitamos que la página recargue
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Enviando...'; // Damos feedback visual
+            
+            const data = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Si se envió bien, mostramos tu modal
+                    const nombre = document.getElementById('nombre').value;
+                    const rol = document.getElementById('audiencia').value;
+
+                    const modalText = document.getElementById('modal-text');
+                    modalText.textContent = `¡Hola ${nombre}! Recibimos tu mensaje como ${rol}. Nos hace muy felices conectar contigo. Te responderemos al correo muy pronto.`;
+
+                    const modal = document.getElementById('modal-confirm');
+                    const modalBox = document.getElementById('modal-box');
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalBox.classList.remove('scale-90');
+                    modalBox.classList.add('scale-100');
+
+                    form.reset();
+                } else {
+                    alert("Lo sentimos, hubo un error al enviar el formulario.");
+                }
+            } catch (error) {
+                alert("Ocurrió un error de red. Intenta nuevamente.");
+            } finally {
+                submitBtn.innerHTML = originalBtnText; // Restauramos el botón
+            }
+        });
+
 
         function closeModal() {
             const modal = document.getElementById('modal-confirm');
