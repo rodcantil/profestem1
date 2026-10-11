@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="assets/img/ProfeSTEM3d_vector.png" type="image/x-icon">
+    <title>ProfeSTEM | Explora, Crea y Descubre el Mundo STEM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stem: {
+                            bg: '#0b0f19',
+                            card: '#151c2e',
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            coral: '#ff6b6b',
+                            amber: '#f59e0b',
+                            pink: '#ec4899',
+                        }
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-purple': '0 0 25px rgba(139, 92, 246, 0.35)',
+                        'neon-cyan': '0 0 25px rgba(6, 182, 212, 0.35)',
+                        'neon-coral': '0 0 25px rgba(255, 107, 107, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text-stem {
+            background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.18) 0%, rgba(6, 182, 212, 0.12) 35%, rgba(11, 15, 25, 0) 70%);
+        }
+
+        .glass-card {
+            background: rgba(21, 28, 46, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element-delayed {
+            animation: float 7s ease-in-out 2s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card bg-opacity-80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <img src="assets/img/ProfeSTEM3d_horiz_vectorblanco.png" alt="ProfeSTEAM Logo" class="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                <!-- Oculto el texto ya que el logo incluye las letras, pero dejo un subtítulo opcional si se desea -->
+                <div class="hidden flex flex-col">
+                    <span class="font-outfit font-extrabold text-2xl tracking-tight text-white flex items-center gap-1">
+                        Profe<span class="gradient-text-stem">STEM</span>
+                    </span>
+                    <span class="text-[10px] text-cyan-400 font-medium tracking-wider uppercase -mt-1">Aprende • Explora • Crea</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-cyan-400 transition-colors">¡Hola Amigos!</a>
+                <a href="#pilares" class="hover:text-cyan-400 transition-colors">Mundo STEM</a>
+                <a href="#audiencias" class="hover:text-cyan-400 transition-colors">Para Quiénes</a>
+                <a href="#laboratorio" class="hover:text-cyan-400 transition-colors">Lab Interactivo</a>
+                <a href="#proyectos" class="hover:text-cyan-400 transition-colors">Desafíos</a>
+            </nav>
+
+            <!-- CTA Button Header -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contacto" class="relative group overflow-hidden px-6 py-2.5 rounded-xl font-outfit font-semibold text-sm text-white shadow-neon-purple transition-all duration-300 hover:scale-105">
+                    <span class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500"></span>
+                    <span class="absolute inset-[1.5px] bg-slate-950 rounded-[10px] transition-all duration-300 group-hover:bg-opacity-0"></span>
+                    <span class="relative z-10 flex items-center gap-2">
+                        <span>¡Hablemos, Amigos!</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3 font-outfit">
+            <a href="#inicio" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">¡Hola Amigos!</a>
+            <a href="#pilares" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Mundo STEM</a>
+            <a href="#audiencias" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Para Quiénes</a>
+            <a href="#laboratorio" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Lab Interactivo</a>
+            <a href="#proyectos" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Desafíos</a>
+            <a href="#contacto" class="block w-full text-center py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 font-semibold text-white">¡Escríbenos!</a>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden gradient-bg-glow">
+        <!-- Background Orbs -->
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl pointer-events-none floating-element"></div>
+        <div class="absolute top-1/3 right-10 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none floating-element-delayed"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-semibold tracking-wide">
+                        <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>👋 ¡Qué bueno verte por aquí, amigo/a!</span>
+                    </div>
+
+                    <h1 class="font-outfit font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.1]">
+                        El futuro no se memoriza, <br>
+                        <span class="gradient-text-stem">¡se explora y se crea!</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        En <strong class="text-white font-semibold">ProfeSTEM</strong> somos tus compañeros de ruta. Nos apasiona encender la chispa del pensamiento crítico, la tecnología y el diseño en estudiantes y profes. ¡Juntos convertimos dudas en inventos geniales! 🚀✨
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 font-outfit font-bold text-white shadow-neon-purple hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+                            <span>Sumarte a la Aventura</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </a>
+                        <a href="#laboratorio" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card hover:bg-slate-800/80 font-outfit font-semibold text-slate-200 border border-slate-700 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Probar Lab Vivo</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="font-outfit font-extrabold text-2xl sm:text-3xl text-cyan-400">+100%</div>
+                            <div class="text-xs text-slate-400">Energía Creativa</div>
+                        </div>
+                        <div>
+                            <div class="font-outfit font-extrabold text-2xl sm:text-3xl text-purple-400">ABP</div>
+                            <div class="text-xs text-slate-400">Aprendizaje Basado en Proyectos</div>
+                        </div>
+                        <div>
+                            <div class="font-outfit font-extrabold text-2xl sm:text-3xl text-pink-400">21st Century</div>
+                            <div class="text-xs text-slate-400">Habilidades del Siglo XXI</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right Interactive Illustration -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        
+                        <!-- Main Card Illustration -->
+                        <div class="glass-card rounded-3xl p-6 shadow-2xl relative z-10 border border-white/10 hover:border-purple-500/40 transition-all duration-500">
+                            
+                            <!-- Card Header -->
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="text-xs font-mono text-cyan-400">profe_stem_core.py</span>
+                            </div>
+
+                            <!-- Creative Code & Visual -->
+                            <div class="space-y-3 font-mono text-xs sm:text-sm">
+                                <p class="text-purple-400"><span class="text-pink-400">def</span> <span class="text-cyan-300">crear_futuro</span>(amigos, curiosidad):</p>
+                                <p class="text-slate-300 pl-4"><span class="text-amber-400">experimentos</span> = amigos.investigar()</p>
+                                <p class="text-slate-300 pl-4"><span class="text-amber-400">ideas</span> = creatividad.combinar(experimentos)</p>
+                                <p class="text-slate-300 pl-4"><span class="text-pink-400">return</span> <span class="text-green-400">"¡Soluciones reales para el mundo! 🌍✨"</span></p>
+                            </div>
+
+                            <!-- Interactive Live Badge Indicator -->
+                            <div class="mt-6 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">
+                                        💡
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-semibold text-white">Desafío del día</div>
+                                        <div class="text-[11px] text-slate-400">¿Cómo diseñarías energía solar inteligente?</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold">Activo</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Floating Badges -->
+                        <div class="absolute -top-6 -right-6 glass-card p-4 rounded-2xl border border-cyan-500/30 shadow-neon-cyan floating-element z-20 hidden sm:flex items-center gap-3">
+                            <span class="text-2xl">🤖</span>
+                            <div>
+                                <div class="text-xs font-bold text-white">Robótica & IA</div>
+                                <div class="text-[10px] text-cyan-300">Aprender haciendo</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl border border-pink-500/30 shadow-neon-coral floating-element-delayed z-20 hidden sm:flex items-center gap-3">
+                            <span class="text-2xl">🌱</span>
+                            <div>
+                                <div class="text-xs font-bold text-white">Sustentabilidad</div>
+                                <div class="text-[10px] text-pink-300">Ciencia con propósito</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="pilares" class="py-20 relative bg-slate-950/60 border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-cyan-400 font-semibold text-sm tracking-wider uppercase font-outfit">Nuestra Esencia</span>
+                <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-white">
+                    Las 4 Dimensiones de la <span class="gradient-text-stem">Exploración STEM</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    No enseñamos teoría aislada, amigos. Integramos cada letra de STEM para convertir preguntas complejas en proyectos reales que impactan a nuestras comunidades.
+                </p>
+            </div>
+
+            <!-- Pillars Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Science (C) -->
+                <div class="glass-card rounded-3xl p-6 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        🔬
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 font-outfit">Ciencias</span>
+                    <h3 class="font-outfit font-bold text-xl text-white mt-1 mb-3">Indagación y Autenticidad</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Observar el entorno, cuestionar lo cotidiano, experimentar y usar evidencia para tomar decisiones responsables por la salud y el planeta.
+                    </p>
+                </div>
+
+                <!-- Technology (T) -->
+                <div class="glass-card rounded-3xl p-6 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        💻
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-purple-400 font-outfit">Tecnología</span>
+                    <h3 class="font-outfit font-bold text-xl text-white mt-1 mb-3">Creación Digital Ética</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Ir más allá del consumo: programar, usar IA con criterio, sensores, pensamiento computacional y ciudadanía digital responsable.
+                    </p>
+                </div>
+
+                <!-- Engineering (I) -->
+                <div class="glass-card rounded-3xl p-6 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        🛠️
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-pink-400 font-outfit">Ingeniería & Diseño</span>
+                    <h3 class="font-outfit font-bold text-xl text-white mt-1 mb-3">Diseño e Ingenio</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Diseñar prototipos, fallar rápido para aprender mejor, iterar y construir soluciones creativas a problemas locales y globales.
+                    </p>
+                </div>
+
+                <!-- Mathematics (M) -->
+                <div class="glass-card rounded-3xl p-6 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        📐
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-outfit">Matemáticas</span>
+                    <h3 class="font-outfit font-bold text-xl text-white mt-1 mb-3">Modelamiento del Mundo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Entender datos, interpretar estadísticas,predecir escenarios y tomar decisiones fundamentadas sin miedo a los números.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="audiencias" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-pink-400 font-semibold text-sm tracking-wider uppercase font-outfit">Nuestras Comunidades</span>
+                <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-white">
+                    ProfeSTEM es para <span class="gradient-text-stem">todos nosotros</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Diseñamos experiencias únicas para cada perfil de la comunidad educativa. ¿Dónde te encuentras tú, amigo/a?
+                </p>
+            </div>
+
+            <!-- Audience Cards Container -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <!-- Estudiantes -->
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between border-t-4 border-t-cyan-500 group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-4xl">🎒</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300">Jóvenes Creadores</span>
+                        </div>
+                        <h3 class="font-outfit font-bold text-2xl text-white mb-3">Estudiantes (3° y 4° Medio / Básico)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Si te aburre memorizar sin sentido, este es tu espacio. Aquí armamos proyectos de robótica, analizamos el cambio climático, programamos videojuegos y aprendemos a resolver desafíos reales de tu comunidad.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Proyectos de Ciencia para la Ciudadanía
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Talleres de Pensamiento Computacional
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Portafolio y preparación para la educación superior
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" onclick="prefillAudience('Estudiante')" class="w-full py-3 rounded-xl bg-slate-900 group-hover:bg-cyan-500 text-center font-outfit font-semibold text-slate-200 group-hover:text-white transition-all duration-300">
+                        ¡Quiero explorar proyectos!
+                    </a>
+                </div>
+
+                <!-- Profesores -->
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between border-t-4 border-t-purple-500 group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-4xl">👩‍🏫</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-300">Docentes Innovadores</span>
+                        </div>
+                        <h3 class="font-outfit font-bold text-2xl text-white mb-3">Profesores y Educadores</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Sabemos lo desafiante que es el aula hoy. Te acompañamos con recursos listos para usar, metodologías ABP interdisciplinarias y guiado práctico en el currículum nacional chileno sin sobrecarga laboral.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Guías de Aprendizaje Basado en Proyectos (ABP)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Integración curricular interdisciplinaria (Ciencias, Mates, Artes)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Capacitaciones prácticas en herramientas digitales
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" onclick="prefillAudience('Profesor/a')" class="w-full py-3 rounded-xl bg-slate-900 group-hover:bg-purple-600 text-center font-outfit font-semibold text-slate-200 group-hover:text-white transition-all duration-300">
+                        Acompañamiento docente
+                    </a>
+                </div>
+
+                <!-- Colegios y Directivos -->
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between border-t-4 border-t-pink-500 group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-4xl">🏫</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-pink-500/20 text-pink-300">Líderes Educativos</span>
+                        </div>
+                        <h3 class="font-outfit font-bold text-2xl text-white mb-3">Colegios y Directivos</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Transformamos la cultura escolar hacia la innovación. Diseñamos e implementamos laboratorios STEM, programas de electividad y formación de equipos con impacto medible en la comunidad escolar.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Diseño e implementación de Labs STEM
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Asesoría en Plan Común Electivo y Formación Diferenciada
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Ferias y muestras de innovación tecnológica
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" onclick="prefillAudience('Equipo Directivo')" class="w-full py-3 rounded-xl bg-slate-900 group-hover:bg-pink-600 text-center font-outfit font-semibold text-slate-200 group-hover:text-white transition-all duration-300">
+                        Planes para mi institución
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="laboratorio" class="py-20 relative bg-slate-950 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Lab Description -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                        ⚡ Probemos en Vivo
+                    </span>
+                    <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-white leading-tight">
+                        Laboratorio <br><span class="gradient-text-stem">Interactive STEM</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        ¡Amigos, la ciencia se aprende jugando y experimentando! Ajusta los parámetros en este simulador de física y energía renovable para calcular la energía generada en tiempo real.
+                    </p>
+
+                    <!-- Interactive Slider Controls -->
+                    <div class="space-y-5 glass-card p-6 rounded-2xl border border-slate-800">
+                        
+                        <!-- Control 1: Velocidad del Viento -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-2">
+                                <span class="text-slate-300 flex items-center gap-2">
+                                    <span>💨 Velocidad del Viento</span>
+                                </span>
+                                <span id="wind-val" class="text-cyan-400 font-mono">15 m/s</span>
+                            </div>
+                            <input type="range" id="wind-slider" min="0" max="40" value="15" class="w-full accent-cyan-400 cursor-pointer">
+                        </div>
+
+                        <!-- Control 2: Eficiencia del Panel/Aerogenerador -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-2">
+                                <span class="text-slate-300 flex items-center gap-2">
+                                    <span>⚙️ Eficiencia del Prototipo</span>
+                                </span>
+                                <span id="eff-val" class="text-purple-400 font-mono">75%</span>
+                            </div>
+                            <input type="range" id="eff-slider" min="10" max="100" value="75" class="w-full accent-purple-400 cursor-pointer">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Simulation Canvas Display -->
+                <div class="lg:col-span-7">
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden border border-slate-800 shadow-2xl">
+                        
+                        <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+                            <span class="text-xs font-mono text-slate-400">Simulación: Aerogenerador Limpio v2.4</span>
+                            <span class="inline-flex items-center gap-1.5 text-xs text-green-400 font-mono">
+                                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                                Renderizando
+                            </span>
+                        </div>
+
+                        <!-- Canvas Graphic Simulation -->
+                        <div class="relative h-64 sm:h-80 w-full bg-slate-900/90 rounded-2xl overflow-hidden flex items-center justify-center border border-slate-800/80">
+                            
+                            <!-- Turbine Blade SVG -->
+                            <div class="relative flex items-center justify-center">
+                                <!-- Tower -->
+                                <div class="absolute top-12 w-3 h-44 bg-slate-700 rounded-b-md"></div>
+                                
+                                <!-- Rotating Rotor -->
+                                <div id="turbine-rotor" class="relative z-10 w-32 h-32 flex items-center justify-center transition-all duration-100">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full text-cyan-400 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                                        <circle cx="50" cy="50" r="8" fill="#a855f7" />
+                                        <!-- Blade 1 -->
+                                        <path d="M50 50 Q48 10 50 5 Q52 10 50 50" fill="currentColor"/>
+                                        <!-- Blade 2 -->
+                                        <path d="M50 50 Q10 52 5 50 Q10 48 50 50" fill="currentColor"/>
+                                        <!-- Blade 3 -->
+                                        <path d="M50 50 Q88 80 92 85 Q85 88 50 50" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Live Particle Effects -->
+                            <div class="absolute inset-0 pointer-events-none opacity-30 flex items-center justify-around">
+                                <div class="w-1 h-1 bg-cyan-300 rounded-full animate-ping"></div>
+                                <div class="w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping delay-200"></div>
+                                <div class="w-1 h-1 bg-pink-400 rounded-full animate-ping delay-500"></div>
+                            </div>
+
+                        </div>
+
+                        <!-- Real-time Output Metrics -->
+                        <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <div class="text-[10px] text-slate-400 uppercase font-mono">Energía Generada</div>
+                                <div id="power-output" class="text-xl sm:text-2xl font-outfit font-extrabold text-cyan-400">320 kW</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <div class="text-[10px] text-slate-400 uppercase font-mono">CO2 Evitado</div>
+                                <div id="co2-saved" class="text-xl sm:text-2xl font-outfit font-extrabold text-purple-400">142 kg</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <div class="text-[10px] text-slate-400 uppercase font-mono">Hogares Alimentados</div>
+                                <div id="homes-count" class="text-xl sm:text-2xl font-outfit font-extrabold text-pink-400">85</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="proyectos" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase font-outfit">Proyectos Destacados</span>
+                    <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-white mt-1">
+                        Lo que nuestros <span class="gradient-text-stem">amigos han creado</span>
+                    </h2>
+                </div>
+                <p class="text-slate-400 text-sm max-w-md">
+                    Ejemplos reales de ABP alineados con los módulos curriculares: Bienestar, Sustentabilidad y Tecnología.
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-slate-900 to-cyan-950 p-6 flex items-center justify-center relative overflow-hidden">
+                            <span class="text-6xl group-hover:scale-125 transition-transform duration-500">🌱💧</span>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Sustentabilidad</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-outfit font-bold text-xl text-white mb-2">Monitoreo Hídrico IoT para Escuelas</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                                Estudiantes de 3° Medio diseñaron sensores con Arduino para optimizar el riego de huertos escolares y detectar fugas de agua.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+                        <span>Módulo: Ambiente</span>
+                        <span class="text-cyan-400 font-semibold">Ver Experiencia →</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:border-purple-500/40 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-slate-900 to-purple-950 p-6 flex items-center justify-center relative overflow-hidden">
+                            <span class="text-6xl group-hover:scale-125 transition-transform duration-500">🤖🏥</span>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Salud & Tecnología</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-outfit font-bold text-xl text-white mb-2">Asistente Postural Digital con IA</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                                Proyecto de Ciencias para la Ciudadanía donde usaron visión por computadora para corregir posturas durante largas horas de estudio.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+                        <span>Módulo: Bienestar</span>
+                        <span class="text-purple-400 font-semibold">Ver Experiencia →</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:border-pink-500/40 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-slate-900 to-pink-950 p-6 flex items-center justify-center relative overflow-hidden">
+                            <span class="text-6xl group-hover:scale-125 transition-transform duration-500">☀️📐</span>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/30">Matemática & Energía</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-outfit font-bold text-xl text-white mb-2">Modelamiento Solar 3D Comunitario</h3>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                                Calculando ángulos de inclinación y sombras con trigonometría para instalar cargadores solares públicos en plazas vecinales.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+                        <span>Módulo: Tecnología</span>
+                        <span class="text-pink-400 font-semibold">Ver Experiencia →</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 relative bg-slate-950/80 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-cyan-400 text-xs font-bold tracking-widest uppercase font-outfit">Voces de la Comunidad</span>
+                <h2 class="font-outfit font-extrabold text-3xl sm:text-4xl text-white mt-2">
+                    Lo que dicen nuestros <span class="gradient-text-stem">amigos exploradores</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between">
+                    <p class="text-slate-300 text-sm italic leading-relaxed mb-6">
+                        "¡ProfeSTEM nos devolvió la curiosidad! Antes la ciencia se sentía como fórmulas de memoria. Con su acompañamiento, mis alumnos de 4° Medio crearon un prototipo de energía limpia del cual se sienten orgullosos."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center">
+                            CP
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Camila Paredes</div>
+                            <div class="text-[11px] text-slate-400">Profesora de Ciencias, Los Lagos</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between">
+                    <p class="text-slate-300 text-sm italic leading-relaxed mb-6">
+                        "Pensé que programar era solo para genios. En los talleres de ProfeSTEM aprendí que equivocarse es parte del proceso. ¡Logré programar mi primer sensor con mis amigas!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center">
+                            MA
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Mateo Araya</div>
+                            <div class="text-[11px] text-slate-400">Estudiante de 3° Medio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between">
+                    <p class="text-slate-300 text-sm italic leading-relaxed mb-6">
+                        "Logramos articular el equipo de Física, Biología y Artes en un solo macroproyecto ABP. El impacto en el clima escolar y la motivación de los estudiantes fue total."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center">
+                            RO
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Roberto Ojeda</div>
+                            <div class="text-[11px] text-slate-400">Director Académico</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 relative gradient-bg-glow">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-700/60 relative overflow-hidden shadow-2xl">
+                
+                <!-- Decoration Badge -->
+                <div class="text-center space-y-3 mb-10">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300 text-xs font-semibold border border-cyan-500/30">
+                        <span>🤝 ¡Conectemos como Amigos!</span>
+                    </span>
+                    <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-white">
+                        ¿Listo/a para <span class="gradient-text-stem">comenzar a crear?</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+                        Escríbenos directamente. Ya seas estudiante con una gran idea, profe buscando metodologías o directivo transformando su colegio, ¡estamos felices de conversar!
+                    </p>
+                </div>
+
+                <!-- Contact Form -->
+                <form action="https://formspree.io/f/xdeazynw" method="POST" id="profe-stem-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Nombre -->
+                        <div>
+                            <label for="nombre" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tu Nombre completo</label>
+                            <input type="text" id="nombre" required placeholder="Ej. Constanza Silva" 
+                                class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                        </div>
+
+                        <!-- Correo -->
+                        <div>
+                            <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tu Correo Electrónico</label>
+                            <input type="email" id="email" required placeholder="tuemail@ejemplo.com" 
+                                class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Audiencia -->
+                        <div>
+                            <label for="audiencia" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿Cómo te defines?</label>
+                            <select id="audiencia" required class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                                <option value="" disabled selected>Selecciona tu rol...</option>
+                                <option value="Estudiante">Estudiante entusiasta</option>
+                                <option value="Profesor/a">Profesor / Edugador/a</option>
+                                <option value="Equipo Directivo">Directivo / Sostenedor</option>
+                                <option value="Familia/Apoderado">Familia / Apoderado</option>
+                                <option value="Otro Amigo">Otro amigo de la educación</option>
+                            </select>
+                        </div>
+
+                        <!-- Ciudad/Comuna -->
+                        <div>
+                            <label for="ciudad" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Ciudad o Comuna</label>
+                            <input type="text" id="ciudad" placeholder="Ej. Castro, Valparaíso, Santiago" 
+                                class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div>
+                        <label for="mensaje" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿En qué proyecto te gustaría colaborar o qué necesitas?</label>
+                        <textarea id="mensaje" rows="4" required placeholder="¡Cuéntanos tus ideas o dudas! Estamos aquí para escucharte y ponernos manos a la obra..." 
+                            class="w-full px-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 font-outfit font-bold text-white text-base shadow-neon-purple hover:scale-[1.01] transition-all duration-300 flex items-center justify-center gap-2">
+                        <span>¡Enviar Mensaje a los Amigos de ProfeSTEM!</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div id="modal-confirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card rounded-3xl p-8 max-w-md w-full text-center space-y-4 border border-cyan-500/40 shadow-neon-cyan transform scale-90 transition-transform duration-300" id="modal-box">
+            <div class="w-16 h-16 mx-auto rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-3xl">
+                🚀
+            </div>
+            <h3 class="font-outfit font-extrabold text-2xl text-white">¡Mensaje Recibido, Amigo/a!</h3>
+            <p class="text-slate-300 text-sm leading-relaxed" id="modal-text">
+                Gracias por escribirnos. Nuestro equipo de ProfeSTEM te responderá muy pronto para ponernos a crear juntos.
+            </p>
+            <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 font-outfit font-semibold text-white">
+                ¡Genial, seguir explorando!
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                
+                <div class="space-y-3">
+                    <div class="font-outfit font-extrabold text-2xl text-white">
+                        Profe<span class="gradient-text-stem">STEM</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Inspirando la creatividad, la ciencia y la exploración en cada aula del país.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-outfit font-bold text-white text-sm mb-3">Secciones</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#inicio" class="hover:text-cyan-400">Inicio</a></li>
+                        <li><a href="#pilares" class="hover:text-cyan-400">Mundo STEM</a></li>
+                        <li><a href="#audiencias" class="hover:text-cyan-400">Para Quiénes</a></li>
+                        <li><a href="#laboratorio" class="hover:text-cyan-400">Lab Interactivo</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-outfit font-bold text-white text-sm mb-3">Enfoque Educativo</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><span>Ciencias para la Ciudadanía</span></li>
+                        <li><span>Aprendizaje Basado en Proyectos</span></li>
+                        <li><span>Habilidades del Siglo XXI</span></li>
+                        <li><span>Tecnología y Sociedad</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-outfit font-bold text-white text-sm mb-3">Contacto Directo</h4>
+                    <p class="text-xs text-slate-400 mb-2">Comunidad ProfeSTEM Chile</p>
+                    <p class="text-xs text-cyan-400 font-mono">hola@profestem.cl</p>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>© 2026 ProfeSTEM. Todos los derechos reservados. Diseñado para explorar y crear sin límites.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <span class="hover:text-slate-400 cursor-pointer">Privacidad</span>
+                    <span class="hover:text-slate-400 cursor-pointer">Términos</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Prefill contact form selection
+        function prefillAudience(role) {
+            const select = document.getElementById('audiencia');
+            if(select) {
+                select.value = role;
+            }
+        }
+
+        // Live STEM Interactive Simulation Logic
+        const windSlider = document.getElementById('wind-slider');
+        const effSlider = document.getElementById('eff-slider');
+        const windVal = document.getElementById('wind-val');
+        const effVal = document.getElementById('eff-val');
+        
+        const powerOutput = document.getElementById('power-output');
+        const co2Saved = document.getElementById('co2-saved');
+        const homesCount = document.getElementById('homes-count');
+        const turbineRotor = document.getElementById('turbine-rotor');
+
+        function updateSimulation() {
+            const wind = parseFloat(windSlider.value);
+            const eff = parseFloat(effSlider.value);
+
+            windVal.textContent = wind + ' m/s';
+            effVal.textContent = eff + '%';
+
+            // Physics calculation approximation: Power ~ v^3 * efficiency
+            const calculatedPower = Math.round(Math.pow(wind, 2.5) * (eff / 100) * 0.25);
+            const co2 = Math.round(calculatedPower * 0.42);
+            const homes = Math.round(calculatedPower / 3.8);
+
+            powerOutput.textContent = calculatedPower + ' kW';
+            co2Saved.textContent = co2 + ' kg';
+            homesCount.textContent = homes;
+
+            // Rotation animation speed
+            if (wind > 0) {
+                const duration = Math.max(0.1, 4 - (wind / 10));
+                turbineRotor.style.animation = `spin ${duration}s linear infinite`;
+            } else {
+                turbineRotor.style.animation = 'none';
+            }
+        }
+
+        // CSS keyframe injection for turbine rotation
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
+        document.head.appendChild(styleSheet);
+
+        windSlider.addEventListener('input', updateSimulation);
+        effSlider.addEventListener('input', updateSimulation);
+        updateSimulation(); // Init
+
+        // Contact Form Handling (Without alert)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const rol = document.getElementById('audiencia').value;
+
+            const modalText = document.getElementById('modal-text');
+            modalText.textContent = `¡Hola ${nombre}! Recibimos tu mensaje como ${rol}. Nos hace muy felices conectar contigo. Te responderemos al correo muy pronto.`;
+
+            const modal = document.getElementById('modal-confirm');
+            const modalBox = document.getElementById('modal-box');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalBox.classList.remove('scale-90');
+            modalBox.classList.add('scale-100');
+
+            document.getElementById('profe-stem-form').reset();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal-confirm');
+            const modalBox = document.getElementById('modal-box');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-90');
+        }
+    </script>
+</body>
+</html>
